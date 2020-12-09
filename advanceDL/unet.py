@@ -23,13 +23,13 @@ def crop_tensor(target,original):
   diff=diff//2
   return original[:,:,diff:original_size-diff,diff:original_size-diff]
 
-
+# Starting the unet model
 class UNet(nn.Module):
 
 
   def __init__(self):
     super().__init__()
-    # Layers 
+     
     # 1st part
     self.mpool2d=nn.MaxPool2d(kernel_size=2, stride=2)
     self.dconv1=double_down_conv(1,64)
@@ -50,7 +50,7 @@ class UNet(nn.Module):
     self.double_u_conv3=double_down_conv(256,128)
     self.double_u_conv4=double_down_conv(128,64)
 
-
+    # Final Layer
     self.out=nn.Conv2d(64,2,kernel_size=1)
     
 
@@ -88,9 +88,9 @@ class UNet(nn.Module):
     xnew4=crop_tensor(x17,x1)
     x18=self.double_u_conv4(torch.cat([x17,xnew4],1))
 
-    print("x18",x18.size())
+    #print("x18",x18.size())
     xfinal=self.out(x18)
-    print("xfinal",xfinal.size())
+    #print("xfinal",xfinal.size())
 
     return xfinal
     
