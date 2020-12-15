@@ -1,2 +1,2 @@
 # paper-implementation
-Implementing Architecture from Scratch
+Research Based Advanced Architecture from Scratch
