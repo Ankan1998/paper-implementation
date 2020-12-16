@@ -55,7 +55,7 @@ class vgg19(nn.Module):
 
 
   def forward(self,x):
-    #print("start",x.shape)
+    
     x=self.dconv1(x)
     x=self.mpool2d(x)
     x=self.dconv2(x)
@@ -73,6 +73,6 @@ class vgg19(nn.Module):
     x=self.relu(x)
     x=self.last(x)
 
-    #print("final",x.shape)
+    
 
     return x
